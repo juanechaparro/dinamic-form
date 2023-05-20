@@ -1,0 +1,38 @@
+[
+    {
+      "component": "FullName",
+      "path": "datos-cliente",
+      "order": 1,
+      "description": "Nombre y apellidos del cliente"
+    },
+    {
+      "component": "Email",
+      "path": "correo-electronico",
+      "order": 2,
+      "description": "Correo electronico del cliente"
+    },
+    {
+      "component": "Address",
+      "path": "direccion-apartamento",
+      "order": 3,
+      "description": "Dirección del apartamento"
+    },
+    {
+      "component": "Floor",
+      "path": "numero-piso",
+      "order": 4,
+      "description": "Número de piso en el que se encuentra el apartamento (máximo 50)"
+    },
+    {
+      "component": "Options",
+      "path": "opciones-apartamento",
+      "order": 5,
+      "description": "Opciones del apartamento que incluye, como Zona BBQ, salón comunal, parque de juegos"
+    },
+    {
+      "component": "SummaryStep",
+      "path": "resumen",
+      "order": 6,
+      "description": "Resumen de datos"
+    }
+  ]

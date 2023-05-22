@@ -27,7 +27,7 @@ const validateNumber = (value, options) => {
   return false;
 };
 const validateText = (value) => {
-  return value.length > 3
+  return value?.length > 3
     ? false
     : "Este campo es requerido y debe ser mayor a 3 caracteres";
 };

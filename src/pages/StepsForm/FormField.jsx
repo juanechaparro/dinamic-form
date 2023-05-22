@@ -11,8 +11,8 @@ export const FormField = ({
   onFieldChange,
 }) => {
   const fieldError = useSelector((state) => {
-    const fieldState = state.form[fieldName]?.error;
-    return fieldState ? fieldState.error : "";
+    const fieldState = state.form[`${fieldName}Error`]?.value;
+    return fieldState ? fieldState : "";
   });
   const handleChange = (e) => {
     let newValue;

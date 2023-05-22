@@ -19,7 +19,7 @@ export const StepsForm = ({
   const navigate = useNavigate();
   const fieldValue = useSelector((state) => {
     const fieldState = state.form[component]?.value;
-    return fieldState ? fieldState.value : "";
+    return fieldState ? fieldState : "";
   });
   const { StepsPaths, StepsPathsLoading } = useSelector((state) => state.form);
   const stepsLength = StepsPathsLoading ? 0 : Object.keys(StepsPaths).length;
@@ -38,12 +38,13 @@ export const StepsForm = ({
   //   dispatch(updateFormField(`${component}Error`, validation));
   const nextStep = () => {
     const validation = validate(fieldValue, type, options);
+    console.log(validation, fieldValue, type, options);
     if (validation) {
-      dispatch(setFormFieldError(component, validation));
+      dispatch(updateFormField(`${component}Error`, validation));
       alert(validation);
       return;
     } else {
-      dispatch(setFormFieldError(component, ""));
+      dispatch(updateFormField(`${component}Error`, ""));
       navigate(StepsPaths[order + 1]);
     }
   };

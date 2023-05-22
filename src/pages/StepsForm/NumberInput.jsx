@@ -7,6 +7,7 @@ export const NumberInput = ({ value, handleChange, options, numberError }) => {
         onChange={handleChange}
         min={options[0]}
         max={options[1]}
+        className={`form-input ${numberError ? "input-error" : ""}`}
       />
       {numberError && <span className="error-message">{numberError}</span>}
     </div>

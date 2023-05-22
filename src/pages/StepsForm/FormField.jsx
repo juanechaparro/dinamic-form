@@ -1,5 +1,6 @@
 import { CheckboxInput } from "./CheckboxInput";
 import { NumberInput } from "./NumberInput";
+import { useSelector } from "react-redux";
 
 export const FormField = ({
   fieldName,
@@ -9,6 +10,10 @@ export const FormField = ({
   validate,
   onFieldChange,
 }) => {
+  const fieldError = useSelector((state) => {
+    const fieldState = state.form[fieldName]?.error;
+    return fieldState ? fieldState.error : "";
+  });
   const handleChange = (e) => {
     let newValue;
     if (type === "checkbox") {
@@ -24,10 +29,10 @@ export const FormField = ({
     }
     onFieldChange(fieldName, newValue);
 
-    if (validate) {
-      const error = validate(newValue, type, options);
-      onFieldChange(`${fieldName}Error`, error);
-    }
+    // if (validate) {
+    //   const error = validate(newValue, type, options);
+    //   onFieldChange(`${fieldName}Error`, error);
+    // }
   };
 
   const renderInput = () => {
@@ -48,14 +53,19 @@ export const FormField = ({
             value={value}
             handleChange={handleChange}
             options={options}
+            error={fieldError}
           />
         );
       default:
-        const textError = validate ? validate(value) : "";
         return (
           <div>
-            <input type={type} value={value} onChange={handleChange} />
-            {textError && <span className="error-message">{textError}</span>}
+            <input
+              type={type}
+              value={value}
+              onChange={handleChange}
+              className={`form-input ${fieldError ? "input-error" : ""}`}
+            />
+            {fieldError && <span className="error-message">{fieldError}</span>}
           </div>
         );
     }

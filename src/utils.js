@@ -10,7 +10,7 @@ export const getOrderPathMap = (stepsData) => {
 };
 const validateEmail = (value) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(value) ? true : "Correo electrónico inválido";
+  return emailRegex.test(value) ? false : "Correo electrónico inválido";
 };
 const validateNumber = (value, options) => {
   const [min, max] = options;
@@ -24,11 +24,11 @@ const validateNumber = (value, options) => {
   if (max && value > max) {
     return `El valor máximo es ${max}`;
   }
-  return true;
+  return false;
 };
 const validateText = (value) => {
   return value.length > 3
-    ? true
+    ? false
     : "Este campo es requerido y debe ser mayor a 3 caracteres";
 };
 
@@ -41,6 +41,6 @@ export const validate = (value, type, options) => {
     case "text":
       return validateText(value);
     default:
-      return true;
+      return false;
   }
 };

@@ -5,6 +5,14 @@ const initialState = {
   StepsPaths: {},
   StepsDataLoading: true,
   StepsPathsLoading: true,
+  fieldName1: {
+    value: "",
+    error: "",
+  },
+  fieldName2: {
+    value: "",
+    error: "",
+  },
 };
 const formReducer = (state = initialState, action) => {
   switch (action.type) {

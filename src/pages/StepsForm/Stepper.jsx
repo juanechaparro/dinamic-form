@@ -1,5 +1,5 @@
 import "../../styles/Stepper.css";
-
+import PropTypes from "prop-types";
 export const Stepper = ({ currentStep, totalSteps }) => {
   return (
     <div className="stepper">
@@ -27,4 +27,7 @@ export const Stepper = ({ currentStep, totalSteps }) => {
   );
 };
 
-export default Stepper;
+Stepper.propTypes = {
+  currentStep: PropTypes.number.isRequired,
+  totalSteps: PropTypes.number.isRequired,
+};

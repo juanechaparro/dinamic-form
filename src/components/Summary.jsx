@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import "../styles/Summary.css";
-import { uiCloseModal } from "../redux/actions/ui";
+import PropTypes from "prop-types";
 import Swal from "sweetalert2";
+import { uiCloseModal } from "../redux/actions/ui";
 import { useNavigate } from "react-router-dom";
+import { clearForm } from "../redux/actions/form";
+import "../styles/Summary.css";
 
 export const Summary = ({ lastStep = false }) => {
   const { form } = useSelector((state) => state);
@@ -36,12 +38,15 @@ export const Summary = ({ lastStep = false }) => {
         icon: "success",
         confirmButtonText: "Ok",
       });
+      localStorage.clear();
+      dispatch(clearForm());
       Navigate("/");
     }
   };
-  return StepsDataLoading ? (
-    <div className="summary-loading">...Loading</div>
-  ) : (
+  if (StepsDataLoading) {
+    return <div className="summary-loading">...Loading</div>;
+  }
+  return (
     <div className={`summary ${lastStep ? "summary_lastStep" : ""}`}>
       <h2 className="summary-title">Resumen de datos :</h2>
       <div className="summary-content">
@@ -81,4 +86,8 @@ export const Summary = ({ lastStep = false }) => {
       )}
     </div>
   );
+};
+
+Summary.propTypes = {
+  lastStep: PropTypes.bool,
 };

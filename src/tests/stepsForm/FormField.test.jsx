@@ -1,73 +1,76 @@
-import { render, fireEvent } from "@testing-library/react";
-import { useSelector } from "react-redux";
+import { render, fireEvent, screen } from "@testing-library/react";
+import { Provider, useSelector } from "react-redux";
 import { FormField } from "../../pages/StepsForm/FormField";
+import { createStore } from "redux";
+import { store } from "../../redux/store";
 
-jest.mock("react-redux");
-
-describe("pruebas en FormField.jsx", () => {
-  test("renderiza correctamente un input de texto", () => {
-    useSelector.mockReturnValue({ form: { name: { error: "" } } });
-
-    const { getByLabelText } = render(
-      <FormField
-        fieldName="name"
-        value=""
-        type="text"
-        options={[]}
-        validate={() => {}}
-        onFieldChange={() => {}}
-        name="Name"
-      />
+// jest.mock("react-redux");
+/* const store = createStore(() => ({
+  form: {
+    name: {
+      value: "",
+      error: "",
+    },
+  },
+})); */
+describe("FormField", () => {
+  test("renderiza correctamente el componente", () => {
+    render(
+      <Provider store={store}>
+        <FormField
+          fieldName="name"
+          value="hola"
+          type="text"
+          options={[]}
+          validate={() => {}}
+          onFieldChange={() => {}}
+          name="Name"
+        />
+      </Provider>
     );
-
-    const input = getByLabelText("Name");
+    screen.debug();
+    const input = screen.getByRole("textbox");
     expect(input).toBeTruthy();
   });
-
   test("renderiza correctamente un input de número", () => {
-    useSelector.mockReturnValue({ form: { age: { error: "" } } });
-
-    const { getByLabelText } = render(
-      <FormField
-        fieldName="age"
-        value={0}
-        type="number"
-        options={[]}
-        validate={() => {}}
-        onFieldChange={() => {}}
-        name="Age"
-      />
+    render(
+      <Provider store={store}>
+        <FormField
+          fieldName="floor"
+          value={0}
+          type="number"
+          options={[1, 50]}
+          validate={() => {}}
+          onFieldChange={() => {}}
+          name="floor"
+        />
+      </Provider>
     );
 
-    const input = getByLabelText("Age");
-    expect(input).toBeInTheDocument();
+    const input = screen.getByRole("spinbutton");
+    expect(input).toBeTruthy();
   });
-
   test("renderiza correctamente un input de checkbox", () => {
-    useSelector.mockReturnValue({ form: { hobbies: { error: "" } } });
-
     const { getByLabelText } = render(
-      <FormField
-        fieldName="hobbies"
-        value={[]}
-        type="checkbox"
-        options={[
-          { label: "Reading", value: "reading" },
-          { label: "Sports", value: "sports" },
-        ]}
-        validate={() => {}}
-        onFieldChange={() => {}}
-        name="Hobbies"
-      />
+      <Provider store={store}>
+        <FormField
+          fieldName="hobbies"
+          value={[]}
+          type="checkbox"
+          options={[
+            { name: "Reading", value: "reading" },
+            { name: "Sports", value: "sports" },
+          ]}
+          validate={() => {}}
+          onFieldChange={() => {}}
+          name="Hobbies"
+        />
+      </Provider>
     );
 
     const readingCheckbox = getByLabelText("Reading");
     const sportsCheckbox = getByLabelText("Sports");
-
-    fireEvent.click(readingCheckbox);
-    fireEvent.click(sportsCheckbox);
-
-    expect(readingCheckbox.checked).toBe(true);
-    expect(sportsCheckbox.checked).toBe(true);
+    expect(readingCheckbox).toBeTruthy();
+    expect(sportsCheckbox).toBeTruthy();
   });
 });

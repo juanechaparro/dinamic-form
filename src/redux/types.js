@@ -5,5 +5,6 @@ const types = {
   SET_STEPS_PATHS: "STEPS_PATHS",
   UI_OPEN_MODAL: "uiOpenModal",
   UI_CLOSE_MODAL: "uiCloseModal",
+  CLEAR_FORM: "CLEAR_FORM",
 };
 export default types;

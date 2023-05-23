@@ -1,13 +1,14 @@
 import { CheckboxInput } from "./CheckboxInput";
 import { NumberInput } from "./NumberInput";
 import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 import "../../styles/FormField.css";
+
 export const FormField = ({
   fieldName,
   value,
   type,
   options,
-  validate,
   onFieldChange,
   name,
 }) => {
@@ -78,4 +79,13 @@ export const FormField = ({
       {renderInput()}
     </div>
   );
+};
+
+FormField.propTypes = {
+  fieldName: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  type: PropTypes.string.isRequired,
+  options: PropTypes.array,
+  onFieldChange: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
 };

@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { setStepsData, setStepsPaths } from "./redux/actions/form";
 import { getOrderPathMap } from "./utils";
 import { Footer } from "./components/Footer";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ function App() {
     dispatch(setStepsData(steps));
     dispatch(setStepsPaths(getOrderPathMap(steps)));
   }, [dispatch]);
+  useLocalStorage(steps);
   return (
     <div className="container">
       <main>

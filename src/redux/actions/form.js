@@ -22,3 +22,7 @@ export const setStepsPaths = (stepsPaths) => ({
   type: types.SET_STEPS_PATHS,
   payload: stepsPaths,
 });
+
+export const clearForm = () => ({
+  type: types.CLEAR_FORM,
+});

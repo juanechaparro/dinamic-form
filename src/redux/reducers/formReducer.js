@@ -36,6 +36,13 @@ const formReducer = (state = initialState, action) => {
         StepsPaths: action.payload,
         StepsPathsLoading: false,
       };
+    case types.CLEAR_FORM:
+      return {
+        StepsPaths: state.StepsPaths,
+        StepsPathsLoading: false,
+        StepsData: state.StepsData,
+        StepsDataLoading: false,
+      };
     default:
       return state;
   }

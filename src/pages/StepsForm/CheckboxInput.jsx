@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 export const CheckboxInput = ({ options, fieldName, handleChange, value }) => {
   return (
     <>
@@ -22,4 +23,11 @@ export const CheckboxInput = ({ options, fieldName, handleChange, value }) => {
       ))}
     </>
   );
+};
+
+CheckboxInput.propTypes = {
+  options: PropTypes.array,
+  fieldName: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
 };

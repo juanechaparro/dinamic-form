@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 export const NumberInput = ({ value, handleChange, options, numberError }) => {
   return (
     <div>
@@ -12,4 +13,11 @@ export const NumberInput = ({ value, handleChange, options, numberError }) => {
       {numberError && <span className="error-message">{numberError}</span>}
     </div>
   );
+};
+
+NumberInput.propTypes = {
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  handleChange: PropTypes.func.isRequired,
+  options: PropTypes.array,
+  numberError: PropTypes.string,
 };

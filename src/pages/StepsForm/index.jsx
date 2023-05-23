@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import PropTypes from "prop-types";
 import { FormField } from "./FormField";
 import { Link, useNavigate } from "react-router-dom";
 import { Summary } from "../../components/Summary";
@@ -7,11 +8,10 @@ import { SummaryModal } from "../../components/SummaryModal";
 import { setFormFieldError, updateFormField } from "../../redux/actions/form";
 import { validate } from "../../utils";
 import "../../styles/StepsForm.css";
-import Stepper from "./Stepper";
+import { Stepper } from "./Stepper";
 import Swal from "sweetalert2";
 export const StepsForm = ({
   component,
-  path,
   order,
   description,
   type,
@@ -47,6 +47,7 @@ export const StepsForm = ({
       return;
     } else {
       dispatch(setFormFieldError(`${component}`, ""));
+      localStorage.setItem(component, fieldValue);
       navigate(StepsPaths[order + 1]);
     }
   };
@@ -98,4 +99,13 @@ export const StepsForm = ({
         )}
       </>
     );
+};
+
+StepsForm.propTypes = {
+  component: PropTypes.string.isRequired,
+  order: PropTypes.number.isRequired,
+  description: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  options: PropTypes.array,
+  name: PropTypes.string.isRequired,
 };

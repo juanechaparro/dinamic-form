@@ -5,6 +5,7 @@ import { uiCloseModal } from "../redux/actions/ui";
 import { useNavigate } from "react-router-dom";
 import { clearForm } from "../redux/actions/form";
 import "../styles/Summary.css";
+import { SummaryButtons } from "./SummaryButtons";
 
 export const Summary = ({ lastStep = false }) => {
   const { form } = useSelector((state) => state);
@@ -40,6 +41,7 @@ export const Summary = ({ lastStep = false }) => {
       });
       localStorage.clear();
       dispatch(clearForm());
+      dispatch(uiCloseModal());
       Navigate("/");
     }
   };
@@ -75,15 +77,11 @@ export const Summary = ({ lastStep = false }) => {
           );
         })}
       </div>
-      {lastStep ? (
-        <button className="summary-send-button" onClick={sendForm}>
-          Enviar
-        </button>
-      ) : (
-        <button className="summary-close-button" onClick={closeModal}>
-          Cerrar
-        </button>
-      )}
+      <SummaryButtons
+        lastStep={lastStep}
+        sendForm={sendForm}
+        closeModal={closeModal}
+      />
     </div>
   );
 };

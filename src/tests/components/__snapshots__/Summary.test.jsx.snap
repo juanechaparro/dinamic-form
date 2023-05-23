@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pruebas en Summary Renderización correcta del componente 1`] = `
+<div>
+  <div
+    class="summary-loading"
+  >
+    ...Loading
+  </div>
+</div>
+`;

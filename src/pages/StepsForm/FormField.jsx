@@ -83,7 +83,11 @@ export const FormField = ({
 
 FormField.propTypes = {
   fieldName: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+    PropTypes.number,
+  ]),
   type: PropTypes.string.isRequired,
   options: PropTypes.array,
   onFieldChange: PropTypes.func.isRequired,

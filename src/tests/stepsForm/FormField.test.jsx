@@ -28,10 +28,34 @@ describe("FormField", () => {
         />
       </Provider>
     );
-    screen.debug();
+
     const input = screen.getByRole("textbox");
     expect(input).toBeTruthy();
   });
+  test("se llama onFieldChange al realizar cambios en el campo de entrada", () => {
+    const onFieldChangeMock = jest.fn();
+
+    render(
+      <Provider store={store}>
+        <FormField
+          fieldName="name"
+          value=""
+          type="text"
+          options={[]}
+          validate={() => {}}
+          onFieldChange={onFieldChangeMock}
+          name="Name"
+        />
+      </Provider>
+    );
+
+    const input = screen.getByRole("textbox");
+    fireEvent.change(input, { target: { value: "New Value" } });
+
+    expect(onFieldChangeMock).toHaveBeenCalledTimes(1); // Verificar que la función simulada se llamó una vez
+    expect(onFieldChangeMock).toHaveBeenCalledWith("name", "New Value"); // Verificar los argumentos pasados a la función simulada
+  });
+
   test("renderiza correctamente un input de número", () => {
     render(
       <Provider store={store}>

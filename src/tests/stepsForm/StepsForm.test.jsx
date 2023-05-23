@@ -6,13 +6,20 @@ import { store } from "../../redux/store";
 import { MemoryRouter } from "react-router-dom";
 describe("pruebas en StepsForm", () => {
   test("renderiza correctamente el componente", () => {
-    render(
+    const { container } = render(
       <Provider store={store}>
         <MemoryRouter>
-          <StepsForm />
+          <StepsForm
+            component="FullName"
+            order={1}
+            description="Nombre y apellidos del cliente"
+            type="text"
+            id={1}
+            name="Nombre completo"
+          />
         </MemoryRouter>
       </Provider>
     );
-    screen.debug();
+    expect(container).toMatchSnapshot();
   });
 });

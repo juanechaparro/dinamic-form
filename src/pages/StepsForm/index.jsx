@@ -107,5 +107,5 @@ StepsForm.propTypes = {
   description: PropTypes.string,
   type: PropTypes.string.isRequired,
   options: PropTypes.array,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
 };

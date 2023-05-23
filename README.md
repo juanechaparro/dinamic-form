@@ -6,7 +6,7 @@ usar npm run dev
 npm run test
 # json de entrada
 El proyecto recibe un json del cual se renderizan todos los pasos e inputs, se tiene precargado el data.json con este schema
-este recibe un array de pasos conla sifueinte info
+este recibe un array de pasos con la fuente de info
 component: Nombre del componente asociado al paso del formulario.
 path: Ruta asociada al paso del formulario.
 order: Orden del paso en el formulario.

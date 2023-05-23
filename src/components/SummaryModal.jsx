@@ -10,6 +10,7 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    with: "320px",
   },
 };
 export const SummaryModal = () => {
@@ -17,7 +18,6 @@ export const SummaryModal = () => {
   const { modalOpen } = useSelector((state) => state.ui);
   const dispatch = useDispatch();
   const closeModal = () => {
-    console.log("closing");
     dispatch(uiCloseModal());
   };
   return (
@@ -27,11 +27,10 @@ export const SummaryModal = () => {
       style={customStyles}
       closeTimeoutMS={200}
       className="modal"
-      overlayClassName="modal-fondo"
     >
-      <Summary />
-
-      <button onClick={closeModal}>Cerrar</button>
+      <section>
+        <Summary />
+      </section>
     </Modal>
   );
 };

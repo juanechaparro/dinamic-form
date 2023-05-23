@@ -6,7 +6,9 @@ import { uiOpenModal } from "../../redux/actions/ui";
 import { SummaryModal } from "../../components/SummaryModal";
 import { setFormFieldError, updateFormField } from "../../redux/actions/form";
 import { validate } from "../../utils";
-
+import "../../styles/StepsForm.css";
+import Stepper from "./Stepper";
+import Swal from "sweetalert2";
 export const StepsForm = ({
   component,
   path,
@@ -14,6 +16,7 @@ export const StepsForm = ({
   description,
   type,
   options,
+  name,
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,12 +26,7 @@ export const StepsForm = ({
   });
   const { StepsPaths, StepsPathsLoading } = useSelector((state) => state.form);
   const stepsLength = StepsPathsLoading ? 0 : Object.keys(StepsPaths).length;
-  /* const validate = (value) => {
-    if (value.length < 1) {
-      return "El campo debe tener al menos 1 caracteres";
-    }
-    return "";
-  }; */
+
   const onFieldChange = (fieldName, value) => {
     dispatch(updateFormField(fieldName, value));
   };
@@ -38,46 +36,66 @@ export const StepsForm = ({
   //   dispatch(updateFormField(`${component}Error`, validation));
   const nextStep = () => {
     const validation = validate(fieldValue, type, options);
-    console.log(validation, fieldValue, type, options);
     if (validation) {
-      dispatch(updateFormField(`${component}Error`, validation));
-      alert(validation);
+      dispatch(setFormFieldError(`${component}`, validation));
+      Swal.fire({
+        title: "Error!",
+        text: validation,
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
       return;
     } else {
-      dispatch(updateFormField(`${component}Error`, ""));
+      dispatch(setFormFieldError(`${component}`, ""));
       navigate(StepsPaths[order + 1]);
     }
   };
-
-  return StepsPathsLoading ? (
-    <div>Loading...</div>
-  ) : (
-    <div>
-      Paso {order} de {stepsLength}
-      {component === "SummaryStep" ? (
-        <Summary />
-      ) : (
-        <>
-          <FormField
-            fieldName={component}
-            description={description}
-            type={type}
-            options={options}
-            value={fieldValue}
-            validate={validate}
-            onFieldChange={onFieldChange}
-          />
-          {order > 1 ? (
-            <Link to={StepsPaths[order - 1]}>Paso Anterior </Link>
-          ) : null}
-          {order < stepsLength ? (
-            <button onClick={nextStep}>Siguiente paso</button>
-          ) : null}
-          <button onClick={openModal}>Abrir Resumen</button>
-          <Summary />
-          <SummaryModal />
-        </>
-      )}
-    </div>
-  );
+  if (StepsPathsLoading) {
+    return <div>Loading...</div>;
+  } else
+    return (
+      <>
+        {component === "SummaryStep" ? (
+          <Summary lastStep={true} />
+        ) : (
+          <main className="stepsForm_container">
+            <section className="steps-form_fields-container">
+              <Stepper currentStep={order} totalSteps={stepsLength} />
+              <SummaryModal />
+              <FormField
+                fieldName={component}
+                description={description}
+                type={type}
+                options={options}
+                name={name}
+                value={fieldValue}
+                validate={validate}
+                onFieldChange={onFieldChange}
+              />
+              <div className="button-container">
+                {order > 1 ? (
+                  <Link
+                    className={"button button-prev"}
+                    to={StepsPaths[order - 1]}
+                  >
+                    <span className="button-icon">←</span> Atras
+                  </Link>
+                ) : null}
+                {order < stepsLength ? (
+                  <button className="button" onClick={nextStep}>
+                    Siguiente <span className="button-icon">→</span>
+                  </button>
+                ) : null}
+                <button className="button mt-10 mobile" onClick={openModal}>
+                  Abrir Resumen
+                </button>
+              </div>
+            </section>
+            <section className="desktop">
+              <Summary />
+            </section>
+          </main>
+        )}
+      </>
+    );
 };

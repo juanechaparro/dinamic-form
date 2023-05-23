@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { setStepsData, setStepsPaths } from "./redux/actions/form";
 import { getOrderPathMap } from "./utils";
+import { Footer } from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,18 +15,21 @@ function App() {
     dispatch(setStepsPaths(getOrderPathMap(steps)));
   }, [dispatch]);
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        {steps.map((step) => (
-          <Route
-            key={step.path}
-            path={step.path}
-            element={<StepsForm {...step} />}
-          />
-        ))}
-      </Routes>
-    </>
+    <div className="container">
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {steps.map((step) => (
+            <Route
+              key={step.path}
+              path={step.path}
+              element={<StepsForm {...step} />}
+            />
+          ))}
+        </Routes>
+      </main>
+      <Footer />
+    </div>
   );
 }
 

@@ -1,0 +1,139 @@
+.summary-modal-container{
+    width: 300px;
+    height: 350px;
+}
+.summary {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    margin: 0px 0px 20px 30px;
+  }
+.summary_lastStep{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    margin:25px;
+}
+.summary-send-button{
+    margin-bottom: 30px;
+    margin-top: 5px;
+    padding: 10px;
+    background-color: #8004fc;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  .summary-loading {
+    font-size: 18px;
+    text-align: center;
+    color: #888;
+  }
+  
+  .summary-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+  }
+  
+  .summary-content {
+    margin-top: 10px;
+  }
+  
+  .summary-step {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .summary-step-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .summary-step-number {
+    font-size: 18px;
+    color: #8004fc;
+  }
+  
+  .summary-step-value {
+    font-size: 18px;
+  }
+  
+  .summary-error {
+    color: red;
+    margin-bottom: 5px;
+  }
+  
+  .summary-description {
+    font-size: 14px;
+    color: #555;
+  }
+  .summary-close-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #8004fc;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .summary-close-button:hover {
+    background-color: #6c02d1;
+  }
+  
+  @media (min-width: 768px) {
+    .summary-close-button {
+      display: none;
+    }
+  }
+  
+  /* Media queries para dispositivos móviles */
+
+  @media (max-width: 768px) {
+    .summary {
+      padding: 10px;
+    }
+  
+    .summary-title {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+  
+    .summary-step {
+      margin-bottom: 15px;
+      padding-bottom: 5px;
+    }
+  
+    .summary-step-header {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 5px;
+    }
+  
+    .summary-step-number {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+  
+    .summary-step-value {
+      font-size: 16px;
+    }
+  
+    .summary-description {
+      font-size: 12px;
+    }
+  }

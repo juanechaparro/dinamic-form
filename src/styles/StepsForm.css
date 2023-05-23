@@ -1,0 +1,41 @@
+.stepsForm_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    margin:25px;
+   
+}
+.steps-form_fields-container{
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+}
+.button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #8004fc;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .button-prev {
+    margin-right: 10px;
+    background-color: #fff;
+    color: #8004fc;
+    border: 2px solid #8004fc;
+  }
+  
+  .button-icon {
+    margin-right: 5px;
+  }
+
+  @media (max-width: 768px) {
+    .button {
+        font-size: 14px;
+      }
+    
+  }

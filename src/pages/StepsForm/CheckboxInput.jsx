@@ -4,6 +4,7 @@ export const CheckboxInput = ({ options, fieldName, handleChange, value }) => {
       {options.map((option) => (
         <div key={option.value}>
           <input
+            className="checkbox"
             type="checkbox"
             id={`${fieldName}_${option.value}`}
             name={fieldName}
@@ -11,7 +12,12 @@ export const CheckboxInput = ({ options, fieldName, handleChange, value }) => {
             checked={value.includes(option.value)}
             onChange={handleChange}
           />
-          <label htmlFor={`${fieldName}_${option.value}`}>{option.name}</label>
+          <label
+            className="checkbox-label"
+            htmlFor={`${fieldName}_${option.value}`}
+          >
+            {option.name}
+          </label>
         </div>
       ))}
     </>

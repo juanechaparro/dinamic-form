@@ -4,8 +4,8 @@ run npm install
 usar npm run dev
 # para correr pruebas correr
 npm run test
-
-el proyecto recibe un json del cual se renderizan todos los pasos e inputs, se tiene precargado el data.json con este schema
+# json de entrada
+El proyecto recibe un json del cual se renderizan todos los pasos e inputs, se tiene precargado el data.json con este schema
 este recibe un array de pasos conla sifueinte info
 component: Nombre del componente asociado al paso del formulario.
 path: Ruta asociada al paso del formulario.

@@ -71,6 +71,5 @@ describe("pruebas en Summary", () => {
 
     const input = screen.getByText("Cerrar");
     expect(input).toBeTruthy();
-    screen.debug();
   });
 });

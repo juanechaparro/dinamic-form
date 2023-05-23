@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { FormField } from "./FormField";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Summary } from "../../components/Summary";
 import { uiOpenModal } from "../../redux/actions/ui";
 import { SummaryModal } from "../../components/SummaryModal";
@@ -10,6 +10,7 @@ import { validate } from "../../utils";
 import "../../styles/StepsForm.css";
 import { Stepper } from "./Stepper";
 import Swal from "sweetalert2";
+import { StepActions } from "./StepActions";
 export const StepsForm = ({
   component,
   order,
@@ -33,7 +34,6 @@ export const StepsForm = ({
   const openModal = () => {
     dispatch(uiOpenModal());
   };
-  //   dispatch(updateFormField(`${component}Error`, validation));
   const nextStep = () => {
     const validation = validate(fieldValue, type, options);
     if (validation) {
@@ -73,24 +73,13 @@ export const StepsForm = ({
                 validate={validate}
                 onFieldChange={onFieldChange}
               />
-              <div className="button-container">
-                {order > 1 ? (
-                  <Link
-                    className={"button button-prev"}
-                    to={StepsPaths[order - 1]}
-                  >
-                    <span className="button-icon">←</span> Atras
-                  </Link>
-                ) : null}
-                {order < stepsLength ? (
-                  <button className="button" onClick={nextStep}>
-                    Siguiente <span className="button-icon">→</span>
-                  </button>
-                ) : null}
-                <button className="button mt-10 mobile" onClick={openModal}>
-                  Abrir Resumen
-                </button>
-              </div>
+              <StepActions
+                nextStep={nextStep}
+                openModal={openModal}
+                order={order}
+                stepsLength={stepsLength}
+                StepsPaths={StepsPaths}
+              />
             </section>
             <section className="desktop">
               <Summary />

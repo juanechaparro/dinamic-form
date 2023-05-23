@@ -29,7 +29,7 @@ export const SummaryModal = () => {
       className="modal"
     >
       <section>
-        <Summary />
+        <Summary lastStep={false} />
       </section>
     </Modal>
   );

@@ -1,6 +1,6 @@
-export const SummaryButtons = (lastStep, sendForm, closeModal) => {
+export const SummaryButtons = ({ lastStep, sendForm, closeModal }) => {
   return lastStep ? (
-    <button className="summary-send-button" onClick={sendForm}>
+    <button onClick={sendForm} className="summary-send-button">
       Enviar
     </button>
   ) : (
